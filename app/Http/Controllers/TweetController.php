@@ -52,7 +52,6 @@ class TweetController extends Controller {
 
         $tweet = new \App\Tweet();
         $tweet->tweet = $request->tweet;
-        $tweet->image = $request->image;
         $tweet->status = $request->status;
 
         $tweet->save();

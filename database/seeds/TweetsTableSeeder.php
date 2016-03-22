@@ -16,7 +16,6 @@ class TweetsTableSeeder extends Seeder
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'tweet' => 'First sample tweet.',
             'status' => 0,
-            'image' => '',
         ]);
 
         DB::table('tweets')->insert([
@@ -24,15 +23,13 @@ class TweetsTableSeeder extends Seeder
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'tweet' => 'Second sample tweet.',
             'status' => 0,
-            'image' => '',
         ]);
 
         DB::table('tweets')->insert([
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'tweet' => 'Third sample tweet.',
-            'status' => 1,
-            'image' => '',
+            'status' => 0,
         ]);
     }
 }
