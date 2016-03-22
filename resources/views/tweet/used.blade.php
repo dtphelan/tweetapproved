@@ -1,20 +1,20 @@
 @extends('layouts.master')
 
  @section('title')
-     Unused tweets
+     Used tweets
  @stop
 
  @section('content')
-     <h1>Ready tweets will show here</h1>
+     <h1>Used tweets will show here</h1>
 
      @if(sizeof($tweets) == 0)
-        No tweets!
-    @else
+        No used tweets!
+     @else
         @foreach($tweets as $tweet)
             <div>
                 <p>{{ $tweet->tweet }}</p>
             </div>
         @endforeach
-    @endif
+     @endif
 
- @stop
+@stop

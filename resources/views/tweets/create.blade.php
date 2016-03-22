@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
- @section('title')
+ @section('tweet')
      Add a new tweet
  @stop
 
@@ -10,15 +10,14 @@
 
      <form method='POST' action='/tweet/create'>
 
-        <input type='hidden' value='{{ csrf_token() }}' name='_token'>
-        <input type='hidden' value='0' name='status' id='status'>
+         {{ csrf_field() }}
 
          <div class='form-group'>
             <label>* Tweet:</label>
             <input
                 type='text'
-                id='tweet'
-                name='tweet'
+                id='title'
+                name='title'
             >
          </div>
 

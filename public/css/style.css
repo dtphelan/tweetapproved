@@ -28,6 +28,9 @@ footer {
 }
 /* End Sticky Footer */
 
+body {
+    padding-top: 89px;
+}
 
 section, header, nav {
     padding-left:25px;
