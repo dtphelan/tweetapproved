@@ -11,7 +11,7 @@
      @if(sizeof($tweet) == 0)
         No new tweets!
      @else
-     <form method='POST' action='/tweet/approve'>
+     <form method='POST' action='/'>
         <input type='hidden' value='{{ csrf_token() }}' name='_token'>
         <input type='hidden' value='{{ $tweet->id }}' name='id'>
             <div class='form-group'>
