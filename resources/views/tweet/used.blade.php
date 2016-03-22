@@ -5,15 +5,21 @@
  @stop
 
  @section('content')
-     <h1>Used tweets will show here</h1>
+     <h1>Reminisce Tweets!</h1>
 
      @if(sizeof($tweets) == 0)
         No used tweets!
      @else
         @foreach($tweets as $tweet)
-            <div>
-                <p>{{ $tweet->tweet }}</p>
-            </div>
+        <form method='POST' class='input-group' action='/tweet/delete'>
+            <input type='hidden' value='{{ csrf_token() }}' name='_token'>
+            <input type='hidden' value='{{ $tweet->id }}' name='id'>
+            <input type='text' class='form-control' disabled value='{{ $tweet->tweet }}'>
+               <span class='input-group-btn'>
+                   <button type="submit" class="btn btn-danger">Delete tweet</button>
+               </span>
+            </input>
+        </form>
         @endforeach
      @endif
 

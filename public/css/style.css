@@ -14,6 +14,7 @@ html {
 }
 body {
     margin:0 0 100px; /* bottom = footer height */
+    padding-top: 89px;
 }
 
 footer {
@@ -27,10 +28,6 @@ footer {
     padding:5px;
 }
 /* End Sticky Footer */
-
-body {
-    padding-top: 89px;
-}
 
 section, header, nav {
     padding-left:25px;
@@ -77,7 +74,9 @@ input[type=text],input[type=password],select {
     list-style-type:none;
 }
 
-
+form {
+    padding: 10px;
+}
 
 /*----------------------------------------------------
 Flash message

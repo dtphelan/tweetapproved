@@ -6,7 +6,7 @@
 
  @section('content')
 
-     <h1>Add a new tweet</h1>
+     <h1>Create Tweets!</h1>
 
      <form method='POST' action='/tweet/create'>
 
@@ -14,9 +14,9 @@
         <input type='hidden' value='0' name='status' id='status'>
 
          <div class='form-group'>
-            <label>* Tweet:</label>
             <input
-                type='text'
+                type='textarea'
+                class='form-control'
                 id='tweet'
                 name='tweet'
             >

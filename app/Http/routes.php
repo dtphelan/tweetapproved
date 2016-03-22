@@ -11,6 +11,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'TweetController@getApprove');
     Route::post('/', 'TweetController@postApprove');
     Route::get('/tweet/used', 'TweetController@getUsed');
+    Route::post('/tweet/delete', 'TweetController@postDelete');
     Route::get('/practice', function() {
         $random = new Random();
         return $random->getRandomString(10);

@@ -11,7 +11,8 @@
 
     <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' rel='stylesheet'>
 
-    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css' rel='stylesheet'>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link href='https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/lumen/bootstrap.min.css' rel='stylesheet'>
 
     <link href='/css/style.css' rel='stylesheet'>
@@ -36,7 +37,7 @@
               </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Approve Tweets <span class="sr-only">(current)</span></a></li>
+                <li><a href="/">Approve Tweets <span class="sr-only">(current)</span></a></li>
                 <li><a href="/tweet/create">Create Tweets</a></li>
                 <li><a href="/tweet">Ready Tweets</a></li>
                 <li><a href="/tweet/used">Used Tweets</a></li>
@@ -47,8 +48,10 @@
 
 
     <section>
-        {{-- Main page content will be yielded here --}}
-        @yield('content')
+        <div class='container'>
+            {{-- Main page content will be yielded here --}}
+            @yield('content')
+        </div>
     </section>
 
     <footer>
@@ -57,7 +60,8 @@
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
     {{-- Yield any page specific JS files or anything else you might want at the end of the body --}}
     @yield('body')

@@ -100,4 +100,12 @@ class TweetController extends Controller {
 
         return redirect('/tweet');
     }
+
+    public function postDelete(Request $request) {
+        $tweet = \App\Tweet::where('id', 'LIKE', $request->id)->first();
+
+        $tweet->delete();
+
+        return redirect('/tweet/used');
+    }
 } # eoc
