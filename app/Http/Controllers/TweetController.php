@@ -92,4 +92,12 @@ class TweetController extends Controller {
         return view('tweet.used')->with('tweets',$tweets);
     }
 
+    public function postUsed(Request $request) {
+        $tweet = \App\Tweet::where('id', 'LIKE', $request->id)->first();
+        $tweet->status = $request->status;
+
+        $tweet->save();
+
+        return redirect('/tweet');
+    }
 } # eoc

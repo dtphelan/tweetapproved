@@ -39,6 +39,7 @@
                 <li class="active"><a href="/">Approve Tweets <span class="sr-only">(current)</span></a></li>
                 <li><a href="/tweet/create">Create Tweets</a></li>
                 <li><a href="/tweet">Ready Tweets</a></li>
+                <li><a href="/tweet/used">Used Tweets</a></li>
             </ul>
         </div>
         </nav>

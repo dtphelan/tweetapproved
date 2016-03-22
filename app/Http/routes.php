@@ -4,6 +4,7 @@ Route::group(['middleware' => ['web']], function () {
         return view('welcome');
     });
     Route::get('/tweet', 'TweetController@getIndex');
+    Route::post('/tweet', 'TweetController@postUsed');
     Route::get('/tweet/create', 'TweetController@getCreate');
     Route::post('/tweet/create', 'TweetController@postCreate');
     Route::get('/tweet/show/{title?}', 'TweetController@getShow');

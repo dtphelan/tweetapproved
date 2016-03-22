@@ -43,7 +43,8 @@
                 >
                 </label>
             </div>
-        <button type="submit" class="btn btn-primary">Approve tweets</button>
+        <button type="submit" class="btn btn-primary">Approve tweet</button>
+    </form>
      @endif
 
  @stop

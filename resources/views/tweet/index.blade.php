@@ -11,9 +11,16 @@
         No tweets!
     @else
         @foreach($tweets as $tweet)
-            <div>
-                <p>{{ $tweet->tweet }}</p>
+        <form method='POST' action='/tweet'>
+           <input type='hidden' value='{{ csrf_token() }}' name='_token'>
+           <input type='hidden' value='{{ $tweet->id }}' name='id'>
+           <input type='hidden' value=3 name='status'>
+                <div>
+                    <p>{{ $tweet->tweet }}</p>
+                </div>
             </div>
+        <button type="submit" class="btn btn-primary">Use tweet</button>
+    </form>
         @endforeach
     @endif
 
