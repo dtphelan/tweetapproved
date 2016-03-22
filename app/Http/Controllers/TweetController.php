@@ -64,7 +64,7 @@ class TweetController extends Controller {
     */
 
     public function getApprove() {
-        $tweet = \App\Tweet::where('status', 'LIKE', 0)->first();
+        $tweet = \App\Tweet::where('status', 'LIKE', 0)->get();
 
         return view('tweet.approve')->with('tweet',$tweet);
     }
