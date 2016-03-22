@@ -17,7 +17,7 @@
             <input type='hidden' value='{{ $tweet->id }}' name='id'>
                 <div class='form-group'>
                     <input
-                        type='text'
+                        type='textarea'
                         class='form-control'
                         id='tweet'
                         name='tweet'
