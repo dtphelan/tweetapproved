@@ -48,8 +48,10 @@
                         <p class='navbar-text navbar-right text-uppercase'><?php echo Auth::user()->organization; ?></p>
                     @endif
                 <button type='button' class='btn btn-default navbar-btn navbar-right'><a href='/logout/'>Log out</a></button>
-                @else
+                <!-- Login button. For now, we redirect all pages to the login page, so the button is redundant.
+                else <-remember to add an @ to uncomment
                 <button type='button' class='btn btn-default navbar-btn navbar-right'><a href='/login/'>Log in</a></button>
+                -->
                 @endif
             </ul>
         </div>
