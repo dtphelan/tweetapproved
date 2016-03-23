@@ -6,10 +6,8 @@
 
  @section('content')
      <h1>Tweet Tweets!</h1>
-     <a class='btn btn-primary' href='<?php echo $url ?>'></a>
-
      @if(sizeof($tweets) == 0)
-        No tweets!
+        <p>No tweets!</p>
     @else
         @foreach($tweets as $tweet)
         <form method='POST' action='/tweet'>
