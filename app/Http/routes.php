@@ -1,7 +1,12 @@
 <?php
 Route::group(['middleware' => ['web']], function () {
     Route::get('/', function () {
-        return view('welcome');
+        if(Auth::check()) {
+            return redirect('/tweet/approve');
+        }
+        else {
+            return view('welcome');
+        }
     });
 
     Route::group(['middleware' => 'auth'], function () {
