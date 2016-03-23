@@ -6,6 +6,7 @@
 
  @section('content')
      <h1>Tweet Tweets!</h1>
+     <a class='btn btn-primary' href='<?php echo $url ?>'></a>
 
      @if(sizeof($tweets) == 0)
         No tweets!

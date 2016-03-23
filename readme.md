@@ -24,3 +24,4 @@ A simple app that allows people to submit tweets for approval by another.
 ## Small ideas
 - [ ] Number badges on section tabs
 - [ ] Fancier splash page
+- [x] Favicon

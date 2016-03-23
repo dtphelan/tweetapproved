@@ -12,7 +12,7 @@
         No new tweets!
      @else
          @foreach($tweet as $tweet)
-         <form method='POST' action='/'>
+         <form method='POST' action='/tweet/approve'>
             <input type='hidden' value='{{ csrf_token() }}' name='_token'>
             <input type='hidden' value='{{ $tweet->id }}' name='id'>
                 <div class='form-group'>

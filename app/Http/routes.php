@@ -16,6 +16,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/tweet/delete', 'TweetController@postDelete');
         Route::get('/tweet/revise', 'TweetController@getRevise');
         Route::post('/tweet/revise', 'TweetController@postRevise');
+        Route::get('twitter/auth', 'TweetController@getAuth');
     });
 
     Route::get('/practice', function() {
