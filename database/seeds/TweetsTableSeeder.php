@@ -23,6 +23,7 @@ class TweetsTableSeeder extends Seeder
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'tweet' => 'Second sample tweet.',
             'status' => 0,
+            'organization' => 'nrri',
         ]);
 
         DB::table('tweets')->insert([

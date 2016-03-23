@@ -19,7 +19,9 @@ class CreateTweetsTable extends Migration
 
             $table->string('tweet');
             $table->integer('status');
-            $table->string('image');
+            $table->string('comment');
+            $table->string('author');
+            $table->string('organization');
 
         });
     }

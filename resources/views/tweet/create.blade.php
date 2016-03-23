@@ -12,6 +12,8 @@
 
         <input type='hidden' value='{{ csrf_token() }}' name='_token'>
         <input type='hidden' value='0' name='status' id='status'>
+        <input type='hidden' value='{{ Auth::user()->name }}' name='author' id='autor'>
+        <input type='hidden' value='{{ Auth::user()->organization }}' name='organization' id='organization'>
 
          <div class='form-group'>
             <input

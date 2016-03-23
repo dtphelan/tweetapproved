@@ -15,8 +15,11 @@
             <input type='hidden' value='{{ csrf_token() }}' name='_token'>
             <input type='hidden' value='{{ $tweet->id }}' name='id'>
             <input type='text' class='form-control' disabled value='{{ $tweet->tweet }}'>
+            @if($tweet->status == 4)
+                <span class='input-group-addon' id='basic-addon2'>Rejected tweet</span>
+            @endif
                <span class='input-group-btn'>
-                   <button type="submit" class="btn btn-danger">Delete tweet</button>
+                   <button type='submit' class='btn btn-danger'>Delete tweet</button>
                </span>
             </input>
         </form>

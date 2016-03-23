@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth;
 
 class TweetController extends Controller {
     /**
@@ -20,7 +21,9 @@ class TweetController extends Controller {
             echo 'No tweets yet';
         }**/
 
-        $tweets = \App\Tweet::where('status', 'LIKE', 1)->get();
+        $tweets = \App\Tweet::where('status', 'LIKE', 1)
+            ->where('organization', 'LIKE', Auth::user()->organization)
+            ->get();
 
         return view('tweet.index')->with('tweets',$tweets);
     }
@@ -53,6 +56,8 @@ class TweetController extends Controller {
         $tweet = new \App\Tweet();
         $tweet->tweet = $request->tweet;
         $tweet->status = $request->status;
+        $tweet->author = $request->author;
+        $tweet->organization = $request->organization;
 
         $tweet->save();
 
@@ -64,7 +69,9 @@ class TweetController extends Controller {
     */
 
     public function getApprove() {
-        $tweet = \App\Tweet::where('status', 'LIKE', 0)->get();
+        $tweet = \App\Tweet::where('status', 'LIKE', 0)
+            ->where('organization', 'LIKE', Auth::user()->organization)
+            ->get();
 
         return view('tweet.approve')->with('tweet',$tweet);
     }
@@ -77,9 +84,12 @@ class TweetController extends Controller {
             ]
         );
 
-        $tweet = \App\Tweet::where('id', 'LIKE', $request->id)->first();
+        $tweet = \App\Tweet::where('id', 'LIKE', $request->id)
+            ->where('organization', 'LIKE', Auth::user()->organization)
+            ->first();
         $tweet->tweet = $request->tweet;
         $tweet->status = $request->status;
+        $tweet->comment = $request->comment;
 
         $tweet->save();
 
@@ -87,13 +97,18 @@ class TweetController extends Controller {
         }
 
     public function getUsed() {
-        $tweets = \App\Tweet::where('status', 'LIKE', 3)->get();
+        $tweets = \App\Tweet::where('status', 'LIKE', 3)
+            ->orwhere('status', 'LIKE', 4)
+            ->where('organization', 'LIKE', Auth::user()->organization)
+            ->get();
 
         return view('tweet.used')->with('tweets',$tweets);
     }
 
     public function postUsed(Request $request) {
-        $tweet = \App\Tweet::where('id', 'LIKE', $request->id)->first();
+        $tweet = \App\Tweet::where('id', 'LIKE', $request->id)
+            ->where('organization', 'LIKE', Auth::user()->organization)
+            ->first();
         $tweet->status = $request->status;
 
         $tweet->save();
@@ -101,8 +116,30 @@ class TweetController extends Controller {
         return redirect('/tweet');
     }
 
+    public function getRevise() {
+        $tweets = \App\Tweet::where('status', 'LIKE', 5)
+            ->where('organization', 'LIKE', Auth::user()->organization)
+            ->get();
+
+        return view('tweet.revise')->with('tweets',$tweets);
+    }
+
+    public function postRevise(Request $request) {
+        $tweet = \App\Tweet::where('id', 'LIKE', $request->id)
+            ->where('organization', 'LIKE', Auth::user()->organization)
+            ->first();
+        $tweet->status = $request->status;
+        $tweet->tweet = $request->tweet;
+
+        $tweet->save();
+
+        return redirect('/tweet/revise');
+    }
+
     public function postDelete(Request $request) {
-        $tweet = \App\Tweet::where('id', 'LIKE', $request->id)->first();
+        $tweet = \App\Tweet::where('id', 'LIKE', $request->id)
+            ->where('organization', 'LIKE', Auth::user()->organization)
+            ->first();
 
         $tweet->delete();
 

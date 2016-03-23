@@ -23,6 +23,15 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+    # Where should the user be redirected to if their login succeeds?
+    protected $redirectPath = '/';
+
+    # Where should the user be redirected to if their login fails?
+    protected $loginPath = '/login';
+
+    # Where should the user be redirected to after logging out?
+    protected $redirectAfterLogout = '/';
+
     /**
      * Where to redirect users after login / registration.
      *
@@ -67,6 +76,8 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'organization' => $data['organization'],
         ]);
     }
+
 }

@@ -24,8 +24,30 @@
                         value='{{ $tweet->tweet }}'
                     >
                 </div>
-            <button type="submit" name="status" value='1' class="btn btn-primary">Approve tweet</button>
-            <button type="submit" name="status" value='4' class="btn btn-danger">Reject tweet</button>
+                <div class='form-group'>
+                    <input
+                        type='textarea'
+                        class='form-control'
+                        id='comment'
+                        name='comment'
+                        placeholder='Comments? Leave them here.'
+                    >
+                </div>
+                @if(!$tweet->author == 0)
+                <div class='form-group'>
+                    <input
+                        type='text'
+                        class='form-control'
+                        id='author'
+                        name='author'
+                        value='By {{ $tweet->author }}'
+                        disabled
+                    >
+                </div>
+                @endif
+            <button type='submit' name='status' value='1' class='btn btn-primary'>Good tweet</button>
+            <button type='submit' name='status' value='4' class='btn btn-danger'>Bad tweet</button>
+            <button type='submit' name='status' value='5' class='btn btn-warning'>Tweet needs revision</button>
         </form>
         @endforeach
      @endif

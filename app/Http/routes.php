@@ -3,23 +3,71 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', function () {
         return view('welcome');
     });
-    Route::get('/tweet', 'TweetController@getIndex');
-    Route::post('/tweet', 'TweetController@postUsed');
-    Route::get('/tweet/create', 'TweetController@getCreate');
-    Route::post('/tweet/create', 'TweetController@postCreate');
-    Route::get('/tweet/show/{title?}', 'TweetController@getShow');
-    Route::get('/', 'TweetController@getApprove');
-    Route::post('/', 'TweetController@postApprove');
-    Route::get('/tweet/used', 'TweetController@getUsed');
-    Route::post('/tweet/delete', 'TweetController@postDelete');
+
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('/tweet', 'TweetController@getIndex');
+        Route::post('/tweet', 'TweetController@postUsed');
+        Route::get('/tweet/create', 'TweetController@getCreate');
+        Route::post('/tweet/create', 'TweetController@postCreate');
+        Route::get('/tweet/show/{title?}', 'TweetController@getShow');
+        Route::get('/', 'TweetController@getApprove');
+        Route::post('/', 'TweetController@postApprove');
+        Route::get('/tweet/used', 'TweetController@getUsed');
+        Route::post('/tweet/delete', 'TweetController@postDelete');
+        Route::get('/tweet/revise', 'TweetController@getRevise');
+        Route::post('/tweet/revise', 'TweetController@postRevise');
+    });
+
     Route::get('/practice', function() {
         $random = new Random();
         return $random->getRandomString(10);
     });
+
+    # Show login form
+    Route::get('/login', 'Auth\AuthController@getLogin');
+
+    # Process login form
+    Route::post('/login', 'Auth\AuthController@postLogin');
+
+    # Process logout
+    Route::get('/logout', function() {
+        Auth::logout();
+        return redirect('/');
+    });
+
+    # Show registration form
+    # Route::get('/register', 'Auth\AuthController@getRegister');
+
+    # Process registration form
+    Route::post('/register', 'Auth\AuthController@postRegister');
+
+    # Org logins
+    Route::get('/register/{organization?}', function($organization)
+        {
+            return view('auth.register')->with('organization',$organization);
+        });
+    # Route::post('/register/{organization?}', 'Auth\AuthController@postRegister');
+
     # Restrict certain routes to only be viewable in the local environments
     if(App::environment('local')) {
         Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
     }
+
+    Route::get('/confirm-login-worked', function() {
+
+    # You may access the authenticated user via the Auth facade
+    $user = Auth::user();
+
+    if($user) {
+        echo 'You are logged in.';
+        dump($user->toArray());
+    } else {
+        echo 'You are not logged in.';
+    }
+
+    return;
+
+    });
 
     Route::get('/debug', function() {
 

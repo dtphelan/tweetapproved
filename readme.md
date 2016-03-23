@@ -7,6 +7,18 @@ A simple app that allows people to submit tweets for approval by another.
 - Approver can comment/rewrite tweet
 - Approved tweets are stored and viewable
 
+## Feature creep
+- [x] Users/organizations
+- [ ] Create new organization
+- [ ] Link org/user Databases
+- [ ] Twitter API OAuth
+- [ ] User roles
+
 ## To-Do
-- [x] Styling, general
+- [ ] Styling, general (always ongoing)
 - [ ] Confirmation/error message on tweet submittal
+- [ ] Server validation
+- [ ] Password reset
+
+## Small ideas
+- [ ] Number badges on section tabs
