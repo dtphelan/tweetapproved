@@ -10,8 +10,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/tweet/create', 'TweetController@getCreate');
         Route::post('/tweet/create', 'TweetController@postCreate');
         Route::get('/tweet/show/{title?}', 'TweetController@getShow');
-        Route::get('/', 'TweetController@getApprove');
-        Route::post('/', 'TweetController@postApprove');
+        Route::get('/tweet/approve', 'TweetController@getApprove');
+        Route::post('/tweet/approve', 'TweetController@postApprove');
         Route::get('/tweet/used', 'TweetController@getUsed');
         Route::post('/tweet/delete', 'TweetController@postDelete');
         Route::get('/tweet/revise', 'TweetController@getRevise');

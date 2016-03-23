@@ -33,11 +33,11 @@
                   <span class='icon-bar'></span>
                   <span class='icon-bar'></span>
                 </button>
-                <a class='navbar-brand' href='#'>Tweet Approver</a>
+                <a class='navbar-brand' href='#'>TweetApprover</a>
               </div>
           <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
             <ul class='nav navbar-nav'>
-                <li><a href='/'>Approve<span class='sr-only'>(current)</span></a></li>
+                <li><a href='/tweet/approve'>Approve<span class='sr-only'>(current)</span></a></li>
                 <li><a href='/tweet/create'>Create</a></li>
                 <li><a href='/tweet/revise'>Revise</a></li>
                 <li><a href='/tweet'>Tweet</a></li>

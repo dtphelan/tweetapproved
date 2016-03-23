@@ -19,6 +19,8 @@ A simple app that allows people to submit tweets for approval by another.
 - [ ] Confirmation/error message on tweet submittal
 - [ ] Server validation
 - [ ] Password reset
+- [x] Splash page
 
 ## Small ideas
 - [ ] Number badges on section tabs
+- [ ] Fancier splash page
