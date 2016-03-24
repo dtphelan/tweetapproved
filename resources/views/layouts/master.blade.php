@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>
-        @yield('title','Tweet Approver')
+        @yield('title','Tweet Approved')
     </title>
 
     <meta charset='utf-8'>
@@ -56,7 +56,7 @@
                   <span class='icon-bar'></span>
                   <span class='icon-bar'></span>
                 </button>
-                <a class='navbar-brand' href='#'>TweetApprover</a>
+                <a class='navbar-brand' href='#'>TweetApproved</a>
               </div>
           <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
             <ul class='nav navbar-nav'>

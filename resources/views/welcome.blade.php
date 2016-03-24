@@ -7,7 +7,7 @@ TweetApprover
 @section('content')
 @if(!Auth::user())
     <div class='col-xs-6 col-sm-12'>
-        <p>Welcome to TweetApprover. If you use TweetApprover, go ahead and log in. It's great!</p>
+        <p>Welcome to TweetApproved. If you use TweetApproved, go ahead and log in. It's great!</p>
     </div>
     <div class='col-xs-6 col-sm-12'>
         <p>If you don't have an account, we're in a "closed Alpha" right now. Maybe some other day!</p>

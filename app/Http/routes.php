@@ -14,7 +14,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/tweet', 'TweetController@postUsed');
         Route::get('/tweet/create', 'TweetController@getCreate');
         Route::post('/tweet/create', 'TweetController@postCreate');
-        Route::get('/tweet/show/{title?}', 'TweetController@getShow');
         Route::get('/tweet/approve', 'TweetController@getApprove');
         Route::post('/tweet/approve', 'TweetController@postApprove');
         Route::get('/tweet/used', 'TweetController@getUsed');

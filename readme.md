@@ -13,13 +13,16 @@ A simple app that allows people to submit tweets for approval by another.
 - [ ] Link org/user Databases
 - [ ] Twitter API OAuth
 - [ ] User roles
+- [ ] Email notifications
+- [ ] Password reset
 
 ## To-Do
 - [ ] Styling, general (always ongoing)
-- [ ] Confirmation/error message on tweet submittal
-- [ ] Server validation
-- [ ] Password reset
+- [x] Confirmation/error message on tweet submittal/approval
+- [ ] Confirmation messages for tweet use/deletion
+- [x] Server validation
 - [x] Splash page
+- [ ] Change name to TweetApproved
 
 ## Small ideas
 - [ ] Number badges on section tabs

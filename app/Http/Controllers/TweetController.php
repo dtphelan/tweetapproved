@@ -6,9 +6,8 @@ use Auth;
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 class TweetController extends Controller {
-    /**
-    * Responds to requests to GET /tweet
-    */
+
+    /* Index of approved tweets, responds to /tweet */
     public function getIndex() {
         $tweets = \App\Tweet::where('status', 'LIKE', 1)
             ->where('organization', 'LIKE', Auth::user()->organization)
@@ -18,17 +17,25 @@ class TweetController extends Controller {
             ->with('tweets',$tweets);
     }
 
-    /**
-     * Responds to requests to GET /tweet/create
-     */
+    /* Marks a tweet as used */
+    public function postUsed(Request $request) {
+        $tweet = \App\Tweet::where('id', 'LIKE', $request->id)
+            ->where('organization', 'LIKE', Auth::user()->organization)
+            ->first();
+        $tweet->status = $request->status;
+
+        $tweet->save();
+
+        return redirect('/tweet');
+    }
+
+    /* Form to create a new tweet */
     public function getCreate() {
         return view('tweet.create');
     }
-    /**
-     * Responds to requests to POST /tweet/create
-     */
+
+    /* Responds to POST Create, adds tweet to database, returns create form with confirmation */
     public function postCreate(Request $request) {
-        #return 'Add the tweet: '.$_POST['title'];
         $this->validate(
             $request,
             [
@@ -44,21 +51,24 @@ class TweetController extends Controller {
 
         $tweet->save();
 
-        return redirect('/tweet/create');
+        $confirm = 'yes';
+
+        return view('tweet.create')
+            ->with('confirm',$confirm);
     }
 
-    /**
-    * Responds to GET /tweet/approve
-    */
 
+    /* Responds to /approve, gets tweets that need approval */
     public function getApprove() {
         $tweet = \App\Tweet::where('status', 'LIKE', 0)
             ->where('organization', 'LIKE', Auth::user()->organization)
             ->get();
 
-        return view('tweet.approve')->with('tweet',$tweet);
+        return view('tweet.approve')
+            ->with('tweet',$tweet);
     }
 
+    /* Responds to POST /approve, approves tweet */
     public function postApprove(Request $request) {
         $this->validate(
             $request,
@@ -76,37 +86,26 @@ class TweetController extends Controller {
 
         $tweet->save();
 
-        return redirect('/tweet/approve');
-        }
-
-    public function getUsed() {
-        $tweets = \App\Tweet::where('status', 'LIKE', 3)
-            ->orwhere('status', 'LIKE', 4)
+        $tweet = \App\Tweet::where('status', 'LIKE', 0)
             ->where('organization', 'LIKE', Auth::user()->organization)
             ->get();
 
-        return view('tweet.used')->with('tweets',$tweets);
-    }
+        return view('tweet.approve')
+            ->with('tweet',$tweet);
 
-    public function postUsed(Request $request) {
-        $tweet = \App\Tweet::where('id', 'LIKE', $request->id)
-            ->where('organization', 'LIKE', Auth::user()->organization)
-            ->first();
-        $tweet->status = $request->status;
+        }
 
-        $tweet->save();
-
-        return redirect('/tweet');
-    }
-
+    /* Responds to /tweet/revise, makes a list of tweets that need revision */
     public function getRevise() {
         $tweets = \App\Tweet::where('status', 'LIKE', 5)
             ->where('organization', 'LIKE', Auth::user()->organization)
             ->get();
 
-        return view('tweet.revise')->with('tweets',$tweets);
+        return view('tweet.revise')
+            ->with('tweets',$tweets);
     }
 
+    /* Revises and resubmits tweet */
     public function postRevise(Request $request) {
         $tweet = \App\Tweet::where('id', 'LIKE', $request->id)
             ->where('organization', 'LIKE', Auth::user()->organization)
@@ -116,9 +115,30 @@ class TweetController extends Controller {
 
         $tweet->save();
 
-        return redirect('/tweet/revise');
+        $confirm = 'yes';
+
+        $tweets = \App\Tweet::where('status', 'LIKE', 5)
+            ->where('organization', 'LIKE', Auth::user()->organization)
+            ->get();
+
+        return view('tweet.revise')
+            ->with('confirm',$confirm)
+            ->with('tweets',$tweets);
     }
 
+    /* Responds to /tweet/used, makes a list of used tweets */
+    public function getUsed() {
+        $tweets = \App\Tweet::where('status', 'LIKE', 3)
+            ->orwhere('status', 'LIKE', 4)
+            ->where('organization', 'LIKE', Auth::user()->organization)
+            ->get();
+
+        return view('tweet.used')
+            ->with('tweets',$tweets);
+    }
+
+
+    /* Deletes a tweet from the database */
     public function postDelete(Request $request) {
         $tweet = \App\Tweet::where('id', 'LIKE', $request->id)
             ->where('organization', 'LIKE', Auth::user()->organization)

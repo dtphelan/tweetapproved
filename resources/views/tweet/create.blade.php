@@ -27,4 +27,21 @@
          <button type="submit" class="btn btn-primary">Add tweet</button>
      </form>
 
+    @if(count($errors) > 0)
+        @foreach ($errors->all() as $error)
+            <div class= 'alert alert-danger alert-dismissible' role='alert'>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p>{{ $error }}</p>
+            </div>
+        @endforeach
+    @endif
+
+    @if(isset($confirm))
+        <div class= 'alert alert-success alert-dismissible' role='alert'>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <p>Well done! Tweet submitted.</p>
+        </div>
+    @endif
+
+
  @stop
