@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use Session;
 use Thujohn\Twitter\Facades\Twitter;
 
 class TweetController extends Controller {
@@ -19,18 +20,24 @@ class TweetController extends Controller {
 
     /* Marks a tweet as used */
     public function postUsed(Request $request) {
-        $tweet = \App\Tweet::where('id', 'LIKE', $request->id)
-            ->where('organization', 'LIKE', Auth::user()->organization)
-            ->first();
-        $tweet->status = $request->status;
+        if(isset(Session::$access_token)) {
 
-        $tweet->save();
+            $tweet = \App\Tweet::where('id', 'LIKE', $request->id)
+                ->where('organization', 'LIKE', Auth::user()->organization)
+                ->first();
+            $tweet->status = $request->status;
 
-        $status = $tweet->tweet;
+            $tweet->save();
 
-        Twitter::postTweet(['status' => $status, 'format' => 'json']);
+            $status = $tweet->tweet;
 
-        return redirect('/tweet');
+            Twitter::postTweet(['status' => $status, 'format' => 'json']);
+
+            return redirect('/tweet');
+        }
+        else {
+            return redirect('twitter/login');
+        }
     }
 
     /* Form to create a new tweet */
