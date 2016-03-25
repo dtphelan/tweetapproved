@@ -1,4 +1,4 @@
-# Tweet Approver
+# Tweet Approved
 A simple app that allows people to submit tweets for approval by another.
 
 ## MVP Features
@@ -22,9 +22,13 @@ A simple app that allows people to submit tweets for approval by another.
 - [ ] Confirmation messages for tweet use/deletion
 - [x] Server validation
 - [x] Splash page
-- [ ] Change name to TweetApproved
+- [x] Change name to TweetApproved
+- [ ] Old tweet value with URL shortener. Brainstorm how to do this...concat shortUrl? Two form buttons?
 
 ## Small ideas
 - [ ] Number badges on section tabs
 - [ ] Fancier splash page
 - [x] Favicon
+- [x] Character count
+- [ ] Character count for revise view
+- [ ] URL shortener

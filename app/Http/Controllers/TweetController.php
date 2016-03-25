@@ -57,6 +57,25 @@ class TweetController extends Controller {
             ->with('confirm',$confirm);
     }
 
+    public function postBitly(Request $request) {
+        $this->validate(
+            $request,
+            [
+                'longUrl' => 'required',
+            ]
+        );
+
+        $longUrl = $request->longUrl;
+
+        $my_bitly = new \Hpatoio\Bitly\Client("d28d2149f4f3417f7c6ef56d860415580e736f74");
+
+        $response = $my_bitly->Shorten(array('longUrl' => $longUrl));
+        $url = $response['url'];
+
+        return view('tweet.create')
+            ->with('url',$url);
+    }
+
 
     /* Responds to /approve, gets tweets that need approval */
     public function getApprove() {
@@ -148,4 +167,5 @@ class TweetController extends Controller {
 
         return redirect('/tweet/used');
     }
+
 } # eoc

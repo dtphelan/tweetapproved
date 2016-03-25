@@ -21,6 +21,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/tweet/revise', 'TweetController@getRevise');
         Route::post('/tweet/revise', 'TweetController@postRevise');
         Route::get('twitter/auth', 'TweetController@getAuth');
+        # Route::post('/bitly', 'TweetController@postBitly');
     });
 
     Route::get('/practice', function() {
