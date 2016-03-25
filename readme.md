@@ -11,7 +11,7 @@ A simple app that allows people to submit tweets for approval by another.
 - [x] Users/organizations
 - [ ] Create new organization
 - [ ] Link org/user Databases
-- [ ] Twitter API OAuth
+- [x] Twitter API OAuth
 - [ ] User roles
 - [ ] Email notifications
 - [ ] Password reset
@@ -25,6 +25,7 @@ A simple app that allows people to submit tweets for approval by another.
 - [x] Splash page
 - [x] Change name to TweetApproved
 - [x] Old tweet value with URL shortener. Brainstorm how to do this...concat shortUrl? Two form buttons?
+- [ ] Allow users to logout from Twitter...
 
 ## Small ideas
 - [ ] Number badges on section tabs

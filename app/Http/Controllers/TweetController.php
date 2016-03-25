@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
-use Abraham\TwitterOAuth\TwitterOAuth;
+use Thujohn\Twitter\Facades\Twitter;
 
 class TweetController extends Controller {
 
@@ -25,6 +25,10 @@ class TweetController extends Controller {
         $tweet->status = $request->status;
 
         $tweet->save();
+
+        $status = $tweet->tweet;
+
+        Twitter::postTweet(['status' => $status, 'format' => 'json']);
 
         return redirect('/tweet');
     }
@@ -56,18 +60,6 @@ class TweetController extends Controller {
 
         return view('tweet.create')
             ->with('confirm',$confirm);
-    }
-
-    public function postBitly() {
-
-        $longUrl = $_POST['longUrl'];
-
-        $my_bitly = new \Hpatoio\Bitly\Client("d28d2149f4f3417f7c6ef56d860415580e736f74");
-
-        $response = $my_bitly->Shorten(array('longUrl' => $longUrl));
-        $url = $response['url'];
-
-        return $url;
     }
 
 
