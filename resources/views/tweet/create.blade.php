@@ -66,7 +66,6 @@
         </div>
     @endif
 
-    <!--
     <form method='POST' action='/bitly'>
         <input type='hidden' value='{{ csrf_token() }}' name='_token'>
         <div class='form-group'>
@@ -94,7 +93,6 @@
 
         <button type="submit" class="btn btn-primary">Shorten URL</button>
     </form>
-    -->
 
 
 

@@ -48,7 +48,8 @@ class TweetController extends Controller {
         $tweet->status = $request->status;
         $tweet->author = $request->author;
         $tweet->organization = $request->organization;
-
+        $tweet->countDisplay = $request->countDisplay;
+        
         $tweet->save();
 
         $confirm = 'yes';

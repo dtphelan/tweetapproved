@@ -4,6 +4,20 @@
     Approve tweets
 @stop
 
+@section('head')
+    <!-- Character count function, from https://www.developphp.com/video/JavaScript/textarea-Form-Field-Character-Counting-and-Limiting -->
+    <script>
+        var maxAmount = 140;
+        function textCounter(textField, showCountField) {
+            if (textField.value.length > maxAmount) {
+                textField.value = textField.value.substring(0, maxAmount);
+        	} else {
+                showCountField.value = maxAmount - textField.value.length;
+        	}
+        }
+    </script>
+@stop
+
 @section('content')
 
     <h1>Approve Tweets!</h1>
@@ -29,11 +43,18 @@
                     <input
                         type='textarea'
                         class='form-control'
-                        id='tweet'
+                        id='tweet{{ $tweet->id }}'
                         name='tweet'
                         value='{{ $tweet->tweet }}'
+                        onKeyDown="textCounter(this.form.tweet{{ $tweet->id }},this.form.countDisplay);"
+                        onKeyUp="textCounter(this.form.tweet{{ $tweet->id }},this.form.countDisplay);"
                     >
                 </div>
+                <div class='input-group'>
+                    <span class='input-group-addon' id='basic-addon3'>Characters Remaining:</span>
+                    <input class='form-control' readonly type='text' name='countDisplay' value='{{ $tweet->countDisplay }}' aria-describedby='basic-addon3'>
+                </div>
+                <br>
                 <div class='form-group'>
                     <input
                         type='textarea'

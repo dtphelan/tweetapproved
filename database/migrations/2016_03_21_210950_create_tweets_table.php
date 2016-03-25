@@ -22,6 +22,7 @@ class CreateTweetsTable extends Migration
             $table->string('comment');
             $table->string('author');
             $table->string('organization');
+            $table->integer('countDisplay');
 
         });
     }
