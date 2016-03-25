@@ -20,8 +20,14 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/tweet/delete', 'TweetController@postDelete');
         Route::get('/tweet/revise', 'TweetController@getRevise');
         Route::post('/tweet/revise', 'TweetController@postRevise');
-        Route::get('twitter/auth', 'TweetController@getAuth');
-        Route::post('/bitly', 'TweetController@postBitly');
+
+        Route::post('/bitly', 'BitlyController@postBitly');
+
+        Route::get('twitter/auth', 'TwitterController@getAuth');
+        Route::get('twitter/login', ['as' => 'twitter.login', 'uses' =>'TwitterController@getLogin']);
+        Route::get('twitter/callback', ['as' => 'twitter.callback', 'uses' => 'TwitterController@getCallback']);
+        Route::get('twitter/error', 'TwitterController@getError');
+        Route::get('twitter/logout', ['as' => 'twitter.logout', 'uses' => 'TwitterController@getLogout']);
     });
 
     Route::get('/practice', function() {

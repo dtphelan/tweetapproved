@@ -157,6 +157,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Thujohn\Twitter\TwitterServiceProvider::class,
+
     ],
 
     /*
@@ -204,7 +206,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
 
-
+        'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
+        'Input'     => Illuminate\Support\Facades\Input::class,
     ],
 
 ];
