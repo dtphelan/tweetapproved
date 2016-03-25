@@ -54,6 +54,7 @@
                     aria-describedby='basic-addon3'
                 >
             </div>
+            <br>
             @endif
             <div class='input-group'>
                 <span class='input-group-addon' id='basic-addon3'>Characters Remaining:</span>
