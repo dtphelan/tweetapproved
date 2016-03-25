@@ -24,6 +24,21 @@
                    disabled
                >
            </div>
+           @if(!$tweet->comment == 0)
+           <div class='input-group'>
+               <span class='input-group-addon' id='basic-addon1'>Comment:</span>
+               <input
+                   type='textarea'
+                   class='form-control'
+                   id='comment'
+                   name='comment'
+                   value='{{ $tweet->comment }}'
+                   disabled
+                   aria-describedby='basic-addon3'
+               >
+           </div>
+           <br>
+           @endif
            @if(!$tweet->author == 0)
            <div class='form-group'>
                <input
