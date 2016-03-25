@@ -5,7 +5,7 @@
 @stop
 
 @section('head')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf_token" content="{{ csrf_token() }}">
 
     <!-- Character count function, from https://www.developphp.com/video/JavaScript/textarea-Form-Field-Character-Counting-and-Limiting -->
     <script>
@@ -95,11 +95,7 @@
 
 @section('body')
     <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+
         $(function() {
             $(".button").click(function() {
             // validate and process form here
@@ -111,6 +107,13 @@
                 $.ajax({
                     type: "POST",
                     url: "/bitly",
+                    beforeSend: function (xhr) {
+                        var token = $('meta[name="csrf_token"]').attr('content');
+
+                        if (token) {
+                              return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+                        }
+                    },
                     data: dataString,
                     success: function(output) {
                         $('#bitly_form').html("<div><p id='message'></p></div>");
