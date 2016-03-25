@@ -91,7 +91,7 @@ class TwitterController extends Controller {
     }
 
     public function getLogout() {
-        Session::forget('access_token');
+        Session::forget($token);
         return Redirect::to('/')->with('flash_notice', 'You\'ve successfully logged out!');
     }
 
