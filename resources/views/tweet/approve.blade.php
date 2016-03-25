@@ -51,11 +51,7 @@
                     >
                 </div>
                 <div class='input-group'>
-                    <span class='input-group-addon' id='basic-addon3'>Characters Remaining:</span>
-                    <input class='form-control' readonly type='text' name='countDisplay' value='{{ $tweet->countDisplay }}' aria-describedby='basic-addon3'>
-                </div>
-                <br>
-                <div class='form-group'>
+                    <span class='input-group-addon' id='basic-addon1'>Comment:</span>
                     <input
                         type='textarea'
                         class='form-control'
@@ -64,6 +60,12 @@
                         placeholder='Comments? Leave them here.'
                     >
                 </div>
+                <br>
+                <div class='input-group'>
+                    <span class='input-group-addon' id='basic-addon3'>Characters Remaining:</span>
+                    <input class='form-control' readonly type='text' name='countDisplay' value='{{ $tweet->countDisplay }}' aria-describedby='basic-addon3'>
+                </div>
+                <br>
                 @if(!$tweet->author == 0)
                 <div class='form-group'>
                     <input

@@ -15,6 +15,7 @@ A simple app that allows people to submit tweets for approval by another.
 - [ ] User roles
 - [ ] Email notifications
 - [ ] Password reset
+- [x] URL shortener
 
 ## To-Do
 - [ ] Styling, general (always ongoing)
@@ -23,12 +24,11 @@ A simple app that allows people to submit tweets for approval by another.
 - [x] Server validation
 - [x] Splash page
 - [x] Change name to TweetApproved
-- [ ] Old tweet value with URL shortener. Brainstorm how to do this...concat shortUrl? Two form buttons?
+- [x] Old tweet value with URL shortener. Brainstorm how to do this...concat shortUrl? Two form buttons?
 
 ## Small ideas
 - [ ] Number badges on section tabs
 - [ ] Fancier splash page
 - [x] Favicon
 - [x] Character count
-- [ ] Character count for revise view
-- [ ] URL shortener
+- [x] Character count for revise view

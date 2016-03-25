@@ -49,7 +49,7 @@ class TweetController extends Controller {
         $tweet->author = $request->author;
         $tweet->organization = $request->organization;
         $tweet->countDisplay = $request->countDisplay;
-        
+
         $tweet->save();
 
         $confirm = 'yes';
@@ -58,23 +58,16 @@ class TweetController extends Controller {
             ->with('confirm',$confirm);
     }
 
-    public function postBitly(Request $request) {
-        $this->validate(
-            $request,
-            [
-                'longUrl' => 'required',
-            ]
-        );
+    public function postBitly() {
 
-        $longUrl = $request->longUrl;
+        $longUrl = $_POST['longUrl'];
 
         $my_bitly = new \Hpatoio\Bitly\Client("d28d2149f4f3417f7c6ef56d860415580e736f74");
 
         $response = $my_bitly->Shorten(array('longUrl' => $longUrl));
         $url = $response['url'];
 
-        return view('tweet.create')
-            ->with('url',$url);
+        return $url;
     }
 
 
@@ -103,6 +96,7 @@ class TweetController extends Controller {
         $tweet->tweet = $request->tweet;
         $tweet->status = $request->status;
         $tweet->comment = $request->comment;
+        $tweet->countDisplay = $request->countDisplay;
 
         $tweet->save();
 
@@ -132,6 +126,7 @@ class TweetController extends Controller {
             ->first();
         $tweet->status = $request->status;
         $tweet->tweet = $request->tweet;
+        $tweet->countDisplay = $request->countDisplay;
 
         $tweet->save();
 

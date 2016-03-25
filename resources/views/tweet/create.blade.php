@@ -5,6 +5,8 @@
 @stop
 
 @section('head')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Character count function, from https://www.developphp.com/video/JavaScript/textarea-Form-Field-Character-Counting-and-Limiting -->
     <script>
         var maxAmount = 140;
@@ -35,8 +37,8 @@
                 class='form-control'
                 id='tweet'
                 name='tweet'
-                onKeyDown="textCounter(this.form.tweet,this.form.countDisplay);"
-                onKeyUp="textCounter(this.form.tweet,this.form.countDisplay);"
+                onKeyDown='textCounter(this.form.tweet,this.form.countDisplay);'
+                onKeyUp='textCounter(this.form.tweet,this.form.countDisplay);'
             >
         </div>
 
@@ -47,13 +49,13 @@
 
         <br>
 
-        <button type="submit" class="btn btn-primary">Add tweet</button>
+        <button type='submit' class='btn btn-primary'>Add tweet</button>
      </form>
 
     @if(count($errors) > 0)
         @foreach ($errors->all() as $error)
             <div class= 'alert alert-danger alert-dismissible' role='alert'>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
                 <p>{{ $error }}</p>
             </div>
         @endforeach
@@ -61,39 +63,64 @@
 
     @if(isset($confirm))
         <div class= 'alert alert-success alert-dismissible' role='alert'>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
             <p>Well done! Tweet submitted.</p>
         </div>
     @endif
 
-    <form method='POST' action='/bitly'>
-        <input type='hidden' value='{{ csrf_token() }}' name='_token'>
-        <div class='form-group'>
-            <input
-                type='textarea'
-                class='form-control'
-                id='longUrl'
-                name='longUrl'
-                placeholder='Link too long? Get a short one here.'
-            >
-        </div>
 
-        @if(isset($url))
+
+
+        <form name='bitly' action='' method=''>
+            <input type='hidden' value='{{ csrf_token() }}' name='_token'>
             <div class='form-group'>
                 <input
                     type='textarea'
                     class='form-control'
-                    id='shortUrl'
-                    name='shortUrl'
-                    disabled
-                    value='<?php echo $url ?>'
+                    id='longUrl'
+                    name='longUrl'
+                    placeholder='Link too long? Get a short one here.'
                 >
             </div>
-        @endif
 
-        <button type="submit" class="btn btn-primary">Shorten URL</button>
-    </form>
+            <div id='bitly_form' class='form-group'>
+            </div>
+
+            <button type='submit' name='submit' id='submit_btn' class='button btn btn-primary'>Shorten URL</button>
+        </form>
 
 
 
+@stop
+
+@section('body')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(function() {
+            $(".button").click(function() {
+            // validate and process form here
+
+                var longUrl = $("input#longUrl").val();
+
+                var dataString = 'longUrl='+ longUrl;
+                // alert (dataString);return false;
+                $.ajax({
+                    type: "POST",
+                    url: "/bitly",
+                    data: dataString,
+                    success: function(output) {
+                        $('#bitly_form').html("<div><p id='message'></p></div>");
+                        $('#message').html("Your short URL: ").append(output)
+                    }
+                });
+
+                return false;
+
+            });
+        });
+    </script>
 @stop
