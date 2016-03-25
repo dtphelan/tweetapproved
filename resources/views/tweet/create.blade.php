@@ -68,27 +68,23 @@
         </div>
     @endif
 
+    <form name='bitly' action='' method=''>
+        <input type='hidden' value='{{ csrf_token() }}' name='_token'>
+        <div class='form-group'>
+            <input
+                type='textarea'
+                class='form-control'
+                id='longUrl'
+                name='longUrl'
+                placeholder='Link too long? Get a short one here.'
+            >
+        </div>
 
+        <div id='bitly_form' class='form-group'>
+        </div>
 
-
-        <form name='bitly' action='' method=''>
-            <input type='hidden' value='{{ csrf_token() }}' name='_token'>
-            <div class='form-group'>
-                <input
-                    type='textarea'
-                    class='form-control'
-                    id='longUrl'
-                    name='longUrl'
-                    placeholder='Link too long? Get a short one here.'
-                >
-            </div>
-
-            <div id='bitly_form' class='form-group'>
-            </div>
-
-            <button type='submit' name='submit' id='submit_btn' class='button btn btn-primary'>Shorten URL</button>
-        </form>
-
+        <button type='submit' name='submit' id='submit_btn' class='button btn btn-primary'>Shorten URL</button>
+    </form>
 
 
 @stop
@@ -96,6 +92,8 @@
 @section('body')
     <script>
 
+        /* Allow the user to get a short URL without reloading the page and losing their tweet.
+        Based on http://code.tutsplus.com/tutorials/submit-a-form-without-page-refresh-using-jquery--net-59 */
         $(function() {
             $(".button").click(function() {
             // validate and process form here
