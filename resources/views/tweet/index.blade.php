@@ -52,7 +52,10 @@
            </div>
            @endif
             <span class='input-group-btn'>
-                <button type="submit" class="btn btn-primary">Use tweet</button>
+                <button type="submit" class="btn btn-primary">Tweet with Twitter</button>
+            </span>
+            <span class='input-group-btn'>
+                <button type="submit" name='archive' value='yes' class="btn btn-primary">Archive</button>
             </span>
         </input>
         </form>

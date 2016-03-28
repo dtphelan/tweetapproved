@@ -20,6 +20,17 @@ class TweetController extends Controller {
 
     /* Marks a tweet as used */
     public function postUsed(Request $request) {
+        if($request->archive = 'yes') {
+            $tweet = \App\Tweet::where('id', 'LIKE', $request->id)
+                ->where('organization', 'LIKE', Auth::user()->organization)
+                ->first();
+            $tweet->status = $request->status;
+
+            $tweet->save();
+
+            return redirect('/tweet');
+        }
+
         if($request->session()->has('access_token')) {
 
             $tweet = \App\Tweet::where('id', 'LIKE', $request->id)
