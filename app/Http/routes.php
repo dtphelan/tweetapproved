@@ -10,20 +10,19 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::group(['middleware' => 'auth'], function () {
-        Route::get('/tweet', 'TweetController@getIndex');
-        Route::post('/tweet', 'TweetController@postUsed');
+        Route::get('/tweet', 'TweetController@getTweet');
+        Route::post('/tweet', 'TweetController@postTweet');
         Route::get('/tweet/create', 'TweetController@getCreate');
         Route::post('/tweet/create', 'TweetController@postCreate');
         Route::get('/tweet/approve', 'TweetController@getApprove');
         Route::post('/tweet/approve', 'TweetController@postApprove');
-        Route::get('/tweet/used', 'TweetController@getUsed');
+        Route::get('/tweet/archive', 'TweetController@getArchive');
         Route::post('/tweet/delete', 'TweetController@postDelete');
         Route::get('/tweet/revise', 'TweetController@getRevise');
         Route::post('/tweet/revise', 'TweetController@postRevise');
 
         Route::post('/bitly', 'BitlyController@postBitly');
 
-        Route::get('twitter/auth', 'TwitterController@getAuth');
         Route::get('twitter/login', ['as' => 'twitter.login', 'uses' =>'TwitterController@getLogin']);
         Route::get('twitter/callback', ['as' => 'twitter.callback', 'uses' => 'TwitterController@getCallback']);
         Route::get('twitter/error', 'TwitterController@getError');
