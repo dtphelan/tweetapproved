@@ -20,35 +20,36 @@ class TweetController extends Controller {
 
     /* Marks a tweet as used */
     public function postUsed(Request $request) {
-        if($request->archive = 'yes') {
-            $tweet = \App\Tweet::where('id', 'LIKE', $request->id)
-                ->where('organization', 'LIKE', Auth::user()->organization)
-                ->first();
-            $tweet->status = $request->status;
+            if($request->archive == 'yes') {
+                $tweet = \App\Tweet::where('id', 'LIKE', $request->id)
+                    ->where('organization', 'LIKE', Auth::user()->organization)
+                    ->first();
+                $tweet->status = $request->status;
 
-            $tweet->save();
+                $tweet->save();
 
-            return redirect('/tweet');
-        }
+                return redirect('/tweet');
+            }
+            else {
+                if($request->session()->has('access_token')) {
 
-        if($request->session()->has('access_token')) {
+                    $tweet = \App\Tweet::where('id', 'LIKE', $request->id)
+                        ->where('organization', 'LIKE', Auth::user()->organization)
+                        ->first();
+                    $tweet->status = $request->status;
 
-            $tweet = \App\Tweet::where('id', 'LIKE', $request->id)
-                ->where('organization', 'LIKE', Auth::user()->organization)
-                ->first();
-            $tweet->status = $request->status;
+                    $tweet->save();
 
-            $tweet->save();
+                    $status = $tweet->tweet;
 
-            $status = $tweet->tweet;
+                    Twitter::postTweet(['status' => $status, 'format' => 'json']);
 
-            Twitter::postTweet(['status' => $status, 'format' => 'json']);
-
-            return redirect('/tweet');
-        }
-        else {
-            return redirect('twitter/login');
-        }
+                    return redirect('/tweet');
+                }
+                else {
+                    return redirect('twitter/login');
+                }
+            }
     }
 
     /* Form to create a new tweet */

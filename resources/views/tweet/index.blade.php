@@ -51,8 +51,9 @@
                >
            </div>
            @endif
+
             <span class='input-group-btn'>
-                <button type="submit" class="btn btn-primary">Tweet with Twitter</button>
+                <button type="submit" name='archive' value='no' class="btn btn-primary">Tweet with Twitter</button>
             </span>
             <span class='input-group-btn'>
                 <button type="submit" name='archive' value='yes' class="btn btn-primary">Archive</button>
