@@ -158,6 +158,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Thujohn\Twitter\TwitterServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -208,6 +209,7 @@ return [
 
         'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
         'Input'     => Illuminate\Support\Facades\Input::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];
