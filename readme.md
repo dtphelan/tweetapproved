@@ -28,7 +28,7 @@ A simple app that allows people to submit tweets for approval by another.
 - [ ] Allow users to logout from Twitter...
 
 ## Small ideas
-- [x] Number badges on section tabs
+- [ ] Number badges on section tabs
 - [ ] Fancier splash page
 - [x] Favicon
 - [x] Character count
