@@ -9,7 +9,12 @@ use Illuminate\Support\Facades\Redirect;
 use Thujohn\Twitter\Facades\Twitter;
 
 class TwitterController extends Controller {
-    
+    public function getAuth() {
+
+        return Twitter::postTweet(['status' => 'Testing Twitter API', 'format' => 'json']);
+
+    }
+
     public function getLogin() {
         // your SIGN IN WITH TWITTER  button should point to this route
         $sign_in_twitter = true;
