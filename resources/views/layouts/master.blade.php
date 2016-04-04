@@ -60,10 +60,10 @@
               </div>
           <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
             <ul class='nav navbar-nav'>
-                <li><a href='/tweet/approve'>Approve <span class='badge'><?php echo DB::table('tweets')->where('status',0)->where('organization', 'LIKE', Auth::user()->organization)->count() ?></span></a></li>
+                <li><a href='/tweet/approve'>Approve<span class='sr-only'>(current)</span></a></li>
                 <li><a href='/tweet/create'>Create</a></li>
-                <li><a href='/tweet/revise'>Revise <span class='badge'><?php echo DB::table('tweets')->where('status',5)->where('organization', 'LIKE', Auth::user()->organization)->count() ?></span></a></li>
-                <li><a href='/tweet'>Tweet <span class='badge'><?php echo DB::table('tweets')->where('status',1)->where('organization', 'LIKE', Auth::user()->organization)->count() ?></span></a></li>
+                <li><a href='/tweet/revise'>Revise</a></li>
+                <li><a href='/tweet'>Tweet</a></li>
                 <li><a href='/tweet/used'>Archive</a></li>
                 @if(Auth::check())
                 <p class='navbar-text navbar-right'><?php echo Auth::user()->name; ?></p>
