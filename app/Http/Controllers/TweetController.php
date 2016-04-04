@@ -9,17 +9,17 @@ use Thujohn\Twitter\Facades\Twitter;
 class TweetController extends Controller {
 
     /* Index of approved tweets, responds to /tweet */
-    public function getTweet() {
+    public function getIndex() {
         $tweets = \App\Tweet::where('status', 'LIKE', 1)
             ->where('organization', 'LIKE', Auth::user()->organization)
             ->get();
 
-        return view('tweet.tweet')
+        return view('tweet.index')
             ->with('tweets',$tweets);
     }
 
     /* Marks a tweet as used */
-    public function postTweet(Request $request) {
+    public function postUsed(Request $request) {
             if($request->archive == 'yes') {
                 $tweet = \App\Tweet::where('id', 'LIKE', $request->id)
                     ->where('organization', 'LIKE', Auth::user()->organization)
@@ -152,14 +152,14 @@ class TweetController extends Controller {
             ->with('tweets',$tweets);
     }
 
-    /* Responds to /tweet/archive, makes a list of used tweets */
-    public function getArchive() {
+    /* Responds to /tweet/used, makes a list of used tweets */
+    public function getUsed() {
         $tweets = \App\Tweet::where('status', 'LIKE', 3)
             ->orwhere('status', 'LIKE', 4)
             ->where('organization', 'LIKE', Auth::user()->organization)
             ->get();
 
-        return view('tweet.archive')
+        return view('tweet.used')
             ->with('tweets',$tweets);
     }
 
@@ -172,7 +172,7 @@ class TweetController extends Controller {
 
         $tweet->delete();
 
-        return redirect('/tweet/archive');
+        return redirect('/tweet/used');
     }
 
 } # eoc

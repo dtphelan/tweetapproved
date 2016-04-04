@@ -64,7 +64,7 @@
                 <li><a href='/tweet/create'>Create</a></li>
                 <li><a href='/tweet/revise'>Revise <span class='badge'><?php echo DB::table('tweets')->where('status',5)->where('organization', 'LIKE', Auth::user()->organization)->count() ?></span></a></li>
                 <li><a href='/tweet'>Tweet <span class='badge'><?php echo DB::table('tweets')->where('status',1)->where('organization', 'LIKE', Auth::user()->organization)->count() ?></span></a></li>
-                <li><a href='/tweet/archive'>Archive</a></li>
+                <li><a href='/tweet/used'>Archive</a></li>
                 @if(Auth::check())
                 <p class='navbar-text navbar-right'><?php echo Auth::user()->name; ?></p>
                     @if(!Auth::user()->organization == 0)
@@ -97,13 +97,6 @@
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js' integrity='sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS' crossorigin='anonymous'></script>
-
-    <!-- Active navbar indicator, from http://totalprogus.blogspot.com.br/2013/12/bootstrap-add-active-class-to-li.html -->
-    <script>
-        $(document).ready(function() {
-            $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
-        });
-    </script>
 
     {{-- Yield any page specific JS files or anything else you might want at the end of the body --}}
     @yield('body')
